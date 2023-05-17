@@ -9,6 +9,7 @@ const FormList = () =>{
 
     const generateList=()=>{
         if(number.current.value!=""){
+            setList([])
             const newlist=[]
             for (let index = 0; index < longeur; index++) {
                 newlist.push(number.current.value*(debut+index));
