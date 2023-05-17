@@ -5,25 +5,40 @@
 // Au moins 2 composants sont nécessaires. Faire cet exercice avec le useRef
 
 import { useRef, useState } from "react";
+import ValidationError from "./../errors/ValidationError";
 
 const FormUsers = () => {
   let [utilisateurs, setUtilisateur] = useState(["timoleon", "gaspard"]);
-  let newUtilisateur = useRef('');
+  let newUtilisateur = useRef("");
 
   const AddUtilisateur = () => {
-    const nom = newUtilisateur.current.value
-    if(nom==""){throw new Error('Un utilisateur ne peut pas être vide!');}
-    if(utilisateurs.includes(nom)){throw new Error('L\'utilisateur est déja présent!');}
-    setUtilisateur([...utilisateurs,nom])
-    newUtilisateur.current.value=""
-}
+    try {
+      const nom = newUtilisateur.current.value;
+      if (!nom) {
+        throw new ValidationError("Un utilisateur ne peut pas être vide!");
+      }
+      if (utilisateurs.includes(nom)) {
+        throw new ValidationError("L'utilisateur est déja présent!");
+      }
+      setUtilisateur([...utilisateurs, nom]);
+      newUtilisateur.current.value = "";
+    } catch (error) {
+      if (error instanceof ValidationError) {
+        alert("Donée invalide : " + error.message);
+      } else {
+        throw error;
+      }
+    }
+  };
 
   return (
     <>
       <form>
         <label htmlFor="ajoutUtilisateur">Utilisateur à ajouter :</label>
         <input id="ajoutUtilisateur" type="text" ref={newUtilisateur} />
-        <button type="button" onClick={AddUtilisateur}>Ajouter</button>
+        <button type="button" onClick={AddUtilisateur}>
+          Ajouter
+        </button>
       </form>
       <ul>
         {utilisateurs.map((utilisateur) => (
