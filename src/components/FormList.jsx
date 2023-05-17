@@ -6,17 +6,14 @@ const FormList = () =>{
     const [list, setList] = useState([])
 
     const generateList=()=>{
+        list.splice(0, list.length);
+        setList(list)
         if(number.current.value!=""){
-            list.splice(0, list.length);
-            setList(list)
             const newlist=[]
             for (let index = 0+1; index < 100+1; index++) {
                 newlist.push(number.current.value*(index));
             }
             setList(newlist)
-        }else{
-            list.splice(0, list.length);
-            setList(list)
         }
     }
     
