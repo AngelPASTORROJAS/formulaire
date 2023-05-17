@@ -3,20 +3,20 @@ import { useRef, useState } from "react";
 const FormList = () =>{
     const number = useRef(null)
     const numberChoice = useRef(null)
-    const longeur = 100
     const [list, setList] = useState([])
-    const debut = 1
 
     const generateList=()=>{
         if(number.current.value!=""){
-            setList([])
+            list.splice(0, list.length);
+            setList(list)
             const newlist=[]
-            for (let index = 0; index < longeur; index++) {
-                newlist.push(number.current.value*(debut+index));
+            for (let index = 0+1; index < 100+1; index++) {
+                newlist.push(number.current.value*(index));
             }
             setList(newlist)
         }else{
-            setList([])
+            list.splice(0, list.length);
+            setList(list)
         }
     }
     
