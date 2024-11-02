@@ -2,7 +2,8 @@
 // import FormStatic from './components/FormStatic'
 // import FormList from './components/FormList'
 // import FormUsers from './components/FormUsers'
-import Effect from './components/Effect'
+// import Effect from './components/Effect'
+import Alea from './components/Alea'
 import './App.css'
 
 function App() {
@@ -12,7 +13,8 @@ function App() {
     {/* <FormStatic></FormStatic> */}
     {/* <FormList></FormList> */}
     {/* <FormUsers></FormUsers> */}
-    <Effect></Effect>
+    {/* <Effect></Effect> */}
+    <Alea random />
     </>
   )
 }
